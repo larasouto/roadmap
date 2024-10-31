@@ -79,6 +79,7 @@ const addCity = () => {
 	const query = Object.assign({}, route.query);
 	// biome-ignore lint/performance/noDelete: <explanation>
 	delete query.preview;
+	query.id = locationObject.id;
 	router.replace({ query });
 };
 

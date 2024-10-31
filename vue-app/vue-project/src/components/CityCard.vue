@@ -6,14 +6,14 @@
     </div>
     <div class="flex flex-col gap-2">
       <p class="text-3xl self-end">
-       {{ Math.round(weather.main.temp) }}&deg
+       {{ Math.round(city.weather.main.temp) }}&deg
       </p>
       <div class="flex gap-2">
         <span class="text-xs">
-          Máxima: {{ Math.round(weather.city.main.temp_max) }}&deg
+          Máxima: {{ Math.round(city.weather.main.temp_max) }}&deg
         </span>
         <span class="text-xs">
-          Mínima: {{ Math.round(weather.city.main.temp_min) }}&deg
+          Mínima: {{ Math.round(city.weather.main.temp_min) }}&deg
         </span>
       </div>
     </div>
