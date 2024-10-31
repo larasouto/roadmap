@@ -12,24 +12,23 @@
     <div class="flex flex-col items-center text-white py-12">
       <h1 class="text-4x mb-2">{{ route.params.city }}</h1>
       <p class="text-sm mb-12">
-        {{ route.params.state }}
         {{
-          new Date(weatherData.currentTime).toLocaleString("en-US", {
+          new Date(weatherData.currentTime).toLocaleString("pt-BR", {
             weekday: "long",
             day: "2-digit",
             month: "long",
           })
         }}
         {{
-          new Date(weatherData.currentTime).toLocaleString("en-US", {
+          new Date(weatherData.currentTime).toLocaleString("pt-BR", {
             timeStyle: "short",
           })
         }}
       </p>
       <p class="text-8xl mb-8">{{ Math.round(weatherData.current.temp) }}&deg</p>
-      <p>Feels like {{ Math.round(weatherData.current.feels_like) }}&deg</p>
+      <p>Sensação de {{ Math.round(weatherData.current.feels_like) }}&deg</p>
       <p class="capitalize">
-        {{ weatherData.current.weather[0].description }}
+        {{ weatherData.current.weather[0].description.toLocaleString("pt-BR") }}
       </p>
       <img
         class="w-[150px] h-auto"
@@ -42,7 +41,7 @@
 
     <div class="max-w-screen-md w-full py-12">
       <div class="mx-8 text-white">
-        <h2 class="mb-4">Hourly Weather</h2>
+        <h2 class="mb-4">Tempo de hora em hora</h2>
         <div class="flex gap-10 overflow-x-scroll">
           <div
             v-for="hourData in weatherData.hourly"
@@ -51,7 +50,7 @@
           >
             <p class="white-space-nowrap text-md">
               {{
-                new Date(hourData.currentTime).toLocaleString("en-US", {
+                new Date(hourData.currentTime).toLocaleString("pt-BR", {
                   hour: "numeric",
                 })
               }}
@@ -69,13 +68,13 @@
   <hr class="border-white border-opacity-10 border w-full" />
   <div class="max-w-screen-md w-full py-12">
     <div class="max-8 text-white">
-    <h2 class="mb-4">7 Day Forecast</h2>
+    <h2 class="mb-4">Previsão de Tempo da semana</h2>
     <div v-for="day in weatherData.daily"
     :key="day.dt"
     class="flex items-center">
     <p class="flex-1">
       {{
-        new Date(day.dt * 1000).toLocaleString("en-US", {
+        new Date(day.dt * 1000).toLocaleString("pt-BR", {
           weekday: "long",
         })
       }}
@@ -99,7 +98,7 @@
   @click="removeCity"
   >
     <i class="fas fa-trash-alt"></i>
-    <p>Remove City</p>
+    <p>Remover Cidade</p>
   </div>
 </div>
 </template>

@@ -20,28 +20,24 @@
       </div>
       <BaseModal :modalActive="modalActive" @close-modal="toggleModal">
         <div class="text-black">
-          <h1 class="text-2xl mb-1">About:</h1>
+          <h1 class="text-2xl mb-1">Sobre</h1>
           <p class="mb-4">
-            The Local Weather allows you to track the current and future weather of cities
-            of your choosing.
+            O My Weather App permite que você acompanhe o clima atual e futuro das cidades de sua escolha.
           </p>
-          <h2 class="text-2xl">How it works:</h2>
+          <h2 class="text-2xl">Como funciona</h2>
           <ol class="list-decimal list-inside mb-4">
-            <li>Search for your city by entering the name into the search bar.</li>
+            <li>Procure sua cidade digitando o nome na barra de busca.</li>
             <li>
-              Select a city within the results, this will take you to the current weather
-              for your selection.
+              Selecione uma cidade nos resultados; isso o levará ao clima atual da sua seleção.
             </li>
             <li>
-              Track the city by clicking on the "+" icon in the top right. This will save
-              the city to view at a later time on the home page.
+              Acompanhe a cidade clicando no ícone "+" no canto superior direito. Isso salvará a cidade para visualização posterior na página inicial.
             </li>
           </ol>
 
-          <h2 class="text-2xl">Removing a city</h2>
+          <h2 class="text-2xl">Removendo uma cidade</h2>
           <p>
-            If you no longer wish to track a city, simply select the city within the home
-            page. At the bottom of the page, there will be am option to delete the city.
+            Se você não quiser mais acompanhar uma cidade, basta selecionar a cidade na página inicial. Na parte inferior da página, haverá uma opção para excluir a cidade.
           </p>
         </div></BaseModal
       >
