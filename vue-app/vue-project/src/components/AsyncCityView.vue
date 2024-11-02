@@ -39,14 +39,14 @@
 
     <hr class="border-white border-opacity-10 border w-full" />
 
-    <div class="max-w-screen-md w-full py-12">
+    <div class="max-w-screen-md w-full pt-12 pb-6">
       <div class="mx-8 text-white">
         <h2 class="mb-4">Tempo de hora em hora</h2>
         <div class="flex gap-10 overflow-x-scroll">
           <div
             v-for="hourData in weatherData.hourly"
             :key="hourData.dt"
-            class="flex flex-col gap-4 items-center"
+            class="flex flex-col gap-4 items-center pb-8"
           >
             <p class="white-space-nowrap text-md">
               {{
@@ -55,52 +55,51 @@
                 })
               }}
             </p>
-            <img
-              class="w-auto h-[50px] object-cover"
-              :src="`http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`"
-              alt=""
-            />
+            <div class="flex items-center w-[60px]">
+              <img
+                class="object-cover"
+                :src="`http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`"
+                alt=""
+              />
+            </div>
             <p class="text-xl">{{ Math.round(hourData.temp) }}&deg;</p>
           </div>
         </div>
       </div>
     </div>
-  <hr class="border-white border-opacity-10 border w-full" />
-  <div class="max-w-screen-md w-full py-12">
-    <div class="max-8 text-white">
-    <h2 class="mb-4">Previsão de Tempo da semana</h2>
-    <div v-for="day in weatherData.daily"
-    :key="day.dt"
-    class="flex items-center">
-    <p class="flex-1">
-      {{
-        new Date(day.dt * 1000).toLocaleString("pt-BR", {
-          weekday: "long",
-        })
-      }}
-    </p>
-    <img 
-      class="w-auto h-[50px] object-cover"
-      :src="
-      `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
-      "
-      alt=""
-    />
-    <div class="flex gap-2 flex-1 justify-end">
-      <p>Máxima: {{ Math.round(day.temp.max) }}&deg;</p>
-      <p>Mínima: {{ Math.round(day.temp.min) }}&deg;</p>
+    <hr class="border-white border-opacity-10 border w-full" />
+    <div class="max-w-screen-md w-full py-12">
+      <div class="max-8 text-white">
+        <h2 class="mb-4">Previsão de Tempo da semana</h2>
+        <div v-for="day in weatherData.daily" :key="day.dt" class="flex items-center">
+          <p class="flex-1">
+            {{
+              new Date(day.dt * 1000).toLocaleString("pt-BR", {
+                weekday: "long",
+              })
+            }}
+          </p>
+          <img
+            class="w-auto h-[50px] object-cover"
+            :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`"
+            alt=""
+          />
+          <div class="flex gap-2 flex-1 justify-end">
+            <p>Máxima: {{ Math.round(day.temp.max) }}&deg;</p>
+            <p>Mínima: {{ Math.round(day.temp.min) }}&deg;</p>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-  </div>
 
-  <div class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500" 
-  @click="removeCity"
-  >
-    <i class="fas fa-trash-alt"></i>
-    <p>Remover Cidade</p>
+    <div
+      class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500"
+      @click="removeCity"
+    >
+      <i class="fas fa-trash-alt"></i>
+      <p>Remover Cidade</p>
+    </div>
   </div>
-</div>
 </template>
 
 <script setup>
@@ -138,6 +137,8 @@ const getWeatherData = async () => {
 		console.error(err);
 	}
 };
+
+await new Promise((res) => setTimeout(res, 1000));
 
 const weatherData = await getWeatherData();
 

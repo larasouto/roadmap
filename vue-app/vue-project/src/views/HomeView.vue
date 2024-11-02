@@ -15,8 +15,7 @@
         <p class="py-2" v-if="searchError">
           Sorry, something went wrong with the search. Please try again.
         </p>
-        <p class="py-2" 
-				v-if="!serverError && mapboxSearchResults.length === 0">
+        <p class="py-2" v-if="!serverError && mapboxSearchResults.length === 0">
           No match your query, please try again.
         </p>
         <template v-else>
@@ -24,7 +23,7 @@
             v-for="searchResult in mapboxSearchResults"
             :key="searchResult.id"
             class="py-2 cursor-pointer"
-						@click="previewCity(searchResult)"
+            @click="previewCity(searchResult)"
           >
             {{ searchResult.place_name }}
           </li>
@@ -32,12 +31,14 @@
       </ul>
     </div>
     <div class="flex flex-col gap-4">
-    <Suspense>
-      <CityList />
-      <template #fallback>
-        <CityCardSkeleton />
-      </template>
-    </Suspense>
+      <KeepAlive>
+        <Suspense>
+          <CityList />
+          <template #fallback>
+            <CityCardSkeleton />
+          </template>
+        </Suspense>
+      </KeepAlive>
     </div>
   </main>
 </template>
