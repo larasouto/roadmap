@@ -7,9 +7,9 @@
      <Transition name="modal-inner">
       <div
       v-if="modalActive"
-      class="p-4 bg-white self-start mt-32 max-w-screen-md">
+      class="p-4 bg-white self-start mt-32 max-w-screen-md rounded-xl">
         <slot></slot>
-        <button class="bg-weather-primary text-white px-6 py-2 mt-6"
+        <button class="bg-weather-primary text-white px-6 py-2 mt-6 rounded-lg"
         @click="$emit('close-modal')">
         Close
         </button>
