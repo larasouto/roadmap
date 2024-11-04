@@ -2,28 +2,26 @@
 
 <template>
   <main>
-    <section class="hero is-white is-fullheight">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns is-vcentered reverse-columns">
-            <div class="column is-10-mobile is-10-tablet is-5-desktop is-5-widescreen is-5-fullhd">
-              <h1 class="title titled is-1 mb-6">Helping people track all the delicious things they want to eat.</h1>
-              <div class="buttons">
-                <router-link to="/restaurants" class="button is-primary">See all food</router-link>
-                <router-link to="/restaurants/new" class="button">Add new food</router-link>
-              </div>
+    <section class="bg-white text-dark py-5">
+      <div class="container">
+        <div class="row align-items-center flex-md-row-reverse">
+          <div class="col-12 col-md-6 mb-5 mb-md-0">
+            <h1 class="display-4 mb-4">Ajudando as pessoas a acompanhar todos os restaurantes que desejam experimentar.</h1>
+            <div class="d-flex gap-2">
+              <router-link to="/restaurants" class="btn btn-info">Ver todos</router-link>
+              <router-link to="/restaurants/new" class="btn btn-light">Adicionar novo</router-link>
             </div>
-            <div
-              data-aos="fade-right"
-              class="column is-10-mobile is-10-tablet is-4-desktop is-7-widescreen is-4-fullhd is-offset-1-fullhd"
-            >
-              <figure class="image is-square">
-                <!--<img src="/images/pexels-andres-ayrton-square.jpg" />-->
-              </figure>
-            </div>
+          </div>
+          <div class="col-12 col-md-6 text-center" data-aos="fade-right">
+            <figure>
+              <img src="https://static.standard.co.uk/2023/03/22/09/newFile-5.jpg?trim=0,709,0,180&quality=75&auto=webp&width=960" 
+                   class="img-fluid" 
+                   alt="Restaurant Image" />
+            </figure>
           </div>
         </div>
       </div>
     </section>
   </main>
 </template>
+\

@@ -5,8 +5,8 @@
   <div class="level-item">
     <div class="select">
       <select>
-        <option>Price</option>
-        <option>Location</option>
+        <option>Preço</option>
+        <option>Locação</option>
       </select>
     </div>
   </div>

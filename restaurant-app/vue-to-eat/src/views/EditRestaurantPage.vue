@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { restaurantStatusList } from "@/constants";
+import { useRestaurantStore } from "@/stores/RestaurantStore";
+import type { Restaurant, StatusResponse } from "@/types";
 import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
-import type { Restaurant, StatusResponse } from "@/types";
 import SideMenu from "../components/SideMenu.vue";
-import { useRestaurantStore } from "@/stores/RestaurantStore";
-import { restaurantStatusList } from "@/constants";
 
 const restaurantStore = useRestaurantStore();
 
@@ -24,7 +24,8 @@ const updatedRestaurant = reactive<Restaurant>({
 	name: "",
 	address: "",
 	website: "",
-	status: "Want to Try",
+	status: "Quero experimentar",
+	image: "",
 });
 
 const updateRestaurant = () => {
@@ -40,74 +41,98 @@ onMounted(() => {
 		updatedRestaurant.status = currentRestaurant.value.status;
 	}
 });
+
+const onFileChange = (event: Event) => {
+	const target = event.target as HTMLInputElement;
+
+	if (!target.files?.length) {
+		return;
+	}
+
+	const file = target.files[0];
+	const reader = new FileReader();
+
+	reader.onload = (e) => {
+		updatedRestaurant.image = e.target?.result as string;
+	};
+
+	reader.readAsDataURL(file);
+};
 </script>
 
 <template>
-  <main class="section">
-    <div class="columns">
+  <main class="container mt-4">
+    <div class="row">
       <SideMenu />
-      <div class="column">
-        <nav class="breadcrumb">
-          <ul>
-            <li><router-link to="/restaurants">Restaurants</router-link></li>
-            <li class="is-active"><a href="#">Edit Restaurant</a></li>
-          </ul>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <router-link to="/restaurants">Restaurantes</router-link>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Restaurante</li>
+          </ol>
         </nav>
-        <form @submit.prevent>
-          <div class="field">
-            <div class="field">
-              <label for="name" class="label">Name</label>
-              <div class="control">
-                <input
-                  type="text"
-                  class="input is-large"
-                  placeholder="Sugarcane Lane"
-                  required
-                  v-model="updatedRestaurant.name"
-                />
-              </div>
-            </div>
-            <div class="field">
-              <label for="status" class="label">Status</label>
-              <div class="control">
-                <div class="select">
-                  <select v-model="updatedRestaurant.status">
-                    <option v-for="status in restaurantStatusList" :value="status">{{ status }}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <label for="address" class="label">Address</label>
-              <div class="control">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="1234 Sugarcane Lane"
-                  v-model="updatedRestaurant.address"
-                />
-              </div>
-            </div>
-            <div class="field mb-5">
-              <label for="website" class="label">Website</label>
-              <div class="control">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="www.sugarcane-lane.com"
-                  v-model="updatedRestaurant.website"
-                />
-              </div>
-            </div>
-            <div class="field">
-              <div class="buttons">
-                <button @click="updateRestaurant" class="button is-success">Update</button>
-                <router-link to="/restaurants" class="button is-light">Cancel</router-link>
-              </div>
-            </div>
-            <div v-if="status.status" class="notification is-info">
-              {{ status.message }}
-            </div>
+        <form @submit.prevent="updateRestaurant">
+          <div class="mb-3">
+            <label for="image" class="form-label">Imagem</label>
+            <input
+              type="file"
+              id="name"
+              class="form-control"
+              placeholder="Digite o nome do restaurante"
+              required
+              @change="onFileChange"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="Digite o nome do restaurante"
+              required
+              v-model="updatedRestaurant.name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" v-model="updatedRestaurant.status">
+              <option
+                v-for="status in restaurantStatusList"
+                :key="status"
+                :value="status"
+              >
+                {{ status }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Endereço</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              placeholder="1234 Sugarcane Lane"
+              v-model="updatedRestaurant.address"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="website" class="form-label">Website</label>
+            <input
+              type="text"
+              class="form-control"
+              id="website"
+              placeholder="www.restaurante.com.br"
+            />
+          </div>
+          <div class="d-flex gap-2 mb-3">
+            <button type="submit" class="btn btn-success">Atualizar</button>
+            <router-link to="/restaurants" class="btn btn-light">Cancelar</router-link>
+          </div>
+          <div v-if="status.status" class="alert alert-info" role="alert">
+            {{ status.message }}
           </div>
         </form>
       </div>

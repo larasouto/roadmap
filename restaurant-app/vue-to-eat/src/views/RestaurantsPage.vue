@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
 import RestaurantCard from "@/components/RestaurantCard.vue";
 import { useRestaurantStore } from "@/stores/RestaurantStore";
-import SideMenu from "../components/SideMenu.vue";
 import type { Restaurant } from "@/types";
+import { computed, ref } from "vue";
+import SideMenu from "../components/SideMenu.vue";
 
 const restaurantStore = useRestaurantStore();
 
@@ -22,47 +22,43 @@ const filteredRestaurants = computed(() => {
 </script>
 
 <template>
-  <main class="section">
-    <div class="columns">
+  <main class="container py-5">
+    <div class="row">
       <!-- Side Menu -->
-      <SideMenu />
-      <div class="column">
-        <h1 class="title">Restaurants</h1>
+      <SideMenu class="col-md-3" />
+      <div class="col-md-9">
+        <h1 class="display-4 mb-4">Restaurantes</h1>
+        
         <!-- CTA Bar -->
-        <nav class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <p class="subtitle is-5">
-                <strong>{{ restaurantStore.numberOfRestaurants }}</strong> restaurants
-              </p>
-            </div>
-
-            <p class="level-item">
-              <router-link to="/restaurants/new" class="button is-success">New</router-link>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <p class="fs-5 mb-0">
+              <strong>{{ restaurantStore.numberOfRestaurants }}</strong> restaurantes
             </p>
+          </div>
 
-            <div class="level-item is-hidden-tablet-only">
-              <div class="field has-addons">
-                <p class="control">
-                  <input class="input" type="text" placeholder="Restaurant name" v-model="filterText" />
-                </p>
-                <p class="control">
-                  <button class="button">Search</button>
-                </p>
-              </div>
+          <div class="d-flex gap-2 align-items-center">
+            <router-link to="/restaurants/new" class="btn btn-success">Novo</router-link>
+            
+            <div class="d-none d-md-flex">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Nome do restaurante" 
+                v-model="filterText" 
+              />
+              <button class="btn btn-secondary ms-2">Buscar</button>
             </div>
           </div>
+        </div>
 
-          <div class="level-right">
-            <!-- Optional: Filter Dropdown Component -->
-          </div>
-        </nav>
         <!-- Display Results -->
-        <div class="columns is-multiline">
-          <div v-for="item in filteredRestaurants" class="column is-full" :key="`item-${item}`">
+        <div class="row row-cols-1 g-4">
+          <div v-for="item in filteredRestaurants" class="col" :key="`item-${item.id}`">
             <RestaurantCard :restaurant="item" />
           </div>
         </div>
+        
         <!-- Optional: Pagination Feature -->
       </div>
     </div>

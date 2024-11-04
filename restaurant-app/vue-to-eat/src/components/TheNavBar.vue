@@ -17,11 +17,11 @@ import ToEatLogo from "../assets/to-eat-logo.svg";
     <div class="navbar-menu">
       <div class="navbar-start">
         <div class="navbar-item">
-          <small>Track the stuff you eat!</small>
+          <small>Acompanhe tudo o que você come!</small>
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item"><router-link to="/restaurants">Restaurants</router-link></div>
+        <div class="navbar-item"><router-link to="/restaurants">Restaurantes</router-link></div>
       </div>
     </div>
   </nav>

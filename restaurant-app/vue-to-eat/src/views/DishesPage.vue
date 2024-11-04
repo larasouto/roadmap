@@ -1,12 +1,11 @@
-
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Dish } from "../types";
 import { restaurantStatusList } from "../constants";
+import type { Dish } from "../types";
 
 const dishList = ref<Dish[]>([]);
 const newDish = ref<Dish>({
-	status: "Want to Try",
+	status: "Quero experimentar",
 });
 
 function addDish() {
@@ -30,11 +29,7 @@ function addDish() {
       <div>
         <label for="dish-status">Dish Status</label>
         <select name="dish-status" id="dish-status" v-model="newDish.status">
-          <option
-            v-for="status in restaurantStatusList"
-            :value="status"
-            :key="status"
-          >
+          <option v-for="status in restaurantStatusList" :value="status" :key="status">
             {{ status }}
           </option>
         </select>
