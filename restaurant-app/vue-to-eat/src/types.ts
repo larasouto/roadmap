@@ -27,4 +27,5 @@ export interface Restaurant {
 	address: string;
 	website: string;
 	status: RecommendStatus;
+	image?: string;
 }

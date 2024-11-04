@@ -1,5 +1,5 @@
 export const restaurantStatusList = [
-	"Want to Try",
-	"Recommended",
-	"Do Not Recommend",
+	"Quero experimentar",
+	"Recomendo",
+	"Não recomendo",
 ] as const;
