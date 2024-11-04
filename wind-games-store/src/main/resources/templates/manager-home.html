@@ -1,0 +1,16 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a3de6dbf75.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <header th:replace="~{fragments/manager-header :: header('Relatórios')}"></header>>
+    <div class="mt-4 mx-auto max-w-3xl">
+      <div th:if="${chartPanel}" th:utext="${chartPanel.toComponentModel().render()}"></div>
+    </div>
+  </body>
+</html>

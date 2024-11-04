@@ -1,0 +1,232 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=game-width, initial-scale=1" />
+    <title>Novo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a3de6dbf75.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="min-h-full bg-gray-50 bg-gray-900">
+    <section class="bg-gray-50 bg-gray-900 min-h-full">
+      <div class="flex flex-col items-center justify-center px-57 py-8 mx-auto min-h-full lg:py-0">
+        <a
+          href="#"
+          class="mt-10 flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
+          <script src="https://kit.fontawesome.com/a3de6dbf75.js" crossorigin="anonymous"></script>
+          <i class="fas fa-gamepad text-black-500 mr-2"></i>
+          Wind GameStore
+        </a>
+        <div
+          class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 dark:border-gray-700 form-container"
+        >
+          <div class="p-10 space-y-8 md:space-y-10 sm:p-6">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+            >
+              Adicionar
+            </h1>
+            <div
+              th:if="${error}"
+              class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded"
+              role="alert"
+            >
+              <p th:text="${error}"></p>
+            </div>
+            <form th:object="${userDto}" th:action="${action}" method="POST">
+              <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label
+                    for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Nome</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+                    th:field="*{name}"
+                    required
+                  />
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"
+                  ></div>
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('email')} ? 'is-invalid' : ''"
+                    th:field="*{email}"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('email')}"
+                    th:errors="*{email}"
+                  ></div>
+                </div>
+                <div>
+                  <label
+                    for="password"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Senha</label
+                  >
+                  <input
+                    type="password"
+                    id="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('password')} ? 'is-invalid' : ''"
+                    th:field="*{password}"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('password')}"
+                    th:errors="*{password}"
+                  ></div>
+                </div>
+                <div>
+                  <label
+                    for="birth_date"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Data de Nascimento</label
+                  >
+                  <input
+                    type="date"
+                    id="birth_date"
+                    class="accent-white bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('birthDate')} ? 'is-invalid' : ''"
+                    th:field="*{birthDate}"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('birthDate')}"
+                    th:errors="*{birthDate}"
+                  ></div>
+                </div>
+                <div class="md:col-span-2">
+                  <label
+                    for="address"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Endereço</label
+                  >
+                  <input
+                    type="text"
+                    id="address"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('address')} ? 'is-invalid' : ''"
+                    th:field="*{address}"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('address')}"
+                    th:errors="*{address}"
+                  ></div>
+                </div>
+                <div>
+                  <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Plataforma</label
+                  >
+                  <select
+                    multiple
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('platforms')} ? 'is-invalid' : ''"
+                    th:field="*{platforms}"
+                  >
+                    <option
+                      th:each="device : ${devices}"
+                      th:value="${device.id}"
+                      th:text="${device.name}"
+                    ></option>
+                  </select>
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('platforms')}"
+                    th:errors="*{platforms}"
+                  ></div>
+                </div>
+                <div>
+                  <label
+                    for="genre_preference"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Preferência de Gênero</label
+                  >
+                  <select
+                    multiple
+                    id="genre_preference"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    th:errorclass="${#fields.hasErrors('genrePreferences.id')} ? 'is-invalid' : ''"
+                    th:field="*{genrePreferences}"
+                  >
+                    <option
+                      th:each="genre : ${genres}"
+                      th:value="${genre.id}"
+                      th:text="${genre.name}"
+                    ></option>
+                  </select>
+                  <div
+                    class="invalid-feedback"
+                    th:if="${#fields.hasErrors('genrePreferences')}"
+                    th:errors="*{genrePreferences}"
+                  ></div>
+                </div>
+                <input type="hidden" id="role" name="role" value="CLIENT" />
+                <div></div>
+              </div>
+              <div class="flex items-start mt-6 mb-6">
+                <div class="flex items-center h-5">
+                  <input
+                    id="remember"
+                    type="checkbox"
+                    value=""
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                    required
+                  />
+                </div>
+                <label
+                  for="remember"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Eu concordo com os
+                  <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"
+                    >termos e condições</a
+                  >.</label
+                >
+              </div>
+              <button
+                type="submit"
+                class="mt-4 mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Adicionar
+              </button>
+              <a
+                href="/users"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Cancelar
+              </a>
+            </form>
+            <script>
+              function validateForm() {
+                const emailInput = document.getElementById('username').value
+                if (!emailInput.includes('@')) {
+                  alert('Por favor, insira um endereço de email válido (com @)')
+                  return false
+                }
+                return true
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

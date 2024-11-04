@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Login</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/a3de6dbf75.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body class="bg-gray-50 dark:bg-gray-900">
+		<div th:replace="~{fragmentos :: header('Lista de pedidos')}"></div>
+		<div class="container p-4">
+			<div class="-m-1.5 overflow-x-auto">
+				<div class="p-1.5 min-w-full inline-block align-middle">
+					<div
+						class="border rounded-lg shadow overflow-hidden border-gray-700 shadow-gray-900"
+					>
+						<table class="min-w-full table-auto divide-y divide-gray-700">
+							<thead class="bg-gray-700">
+								<tr>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										ID
+									</th>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										Jogo
+									</th>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										Comprador
+									</th>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										Titular do cartão
+									</th>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										Número do cartão
+									</th>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										Status
+									</th>
+									<th
+										class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+									>
+										Ação
+									</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-gray-700">
+								<tr th:each="purchase : ${purchases}">
+									<td
+										class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200"
+										th:text="${purchase.id}"
+									>
+										ID
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+										th:text="${purchase.game.name}"
+									>
+										Jogo
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+										th:text="${purchase.buyer.name}"
+									>
+										Comprador
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+										th:text="${purchase.cardHolder}"
+									>
+										Titular do cartão
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+										th:text="${purchase.cardNumber}"
+									>
+										Número do cartão
+									</td>
+									<td
+										class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+										th:text="${purchase.purchaseStatus != null && purchase.purchaseStatus ? 'Confirmado' : 'Pendente'}"
+									>
+										Status de confirmação
+									</td>
+									<td
+										class="flex justify-between pr-4 py-4 whitespace-nowrap text-sm font-medium"
+									>
+										<form
+											th:action="@{/purchases/__${purchase.id}__/confirm}"
+											method="post"
+										>
+											<input
+												type="hidden"
+												th:attr="name='_method', value='post'"
+											/>
+											<button
+												type="submit"
+												class="text-blue-500 hover:text-blue-700"
+											>
+												</i> Confirmar
+											</button>
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

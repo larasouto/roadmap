@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Games</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/a3de6dbf75.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body class="bg-gray-800 text-white">
+		<header
+			th:replace="~{fragmentos :: header('Detalhes do Usuário #' + ${user.id})}"
+		></header>
+		<main class="container mt-4">
+			<div class="grid grid-cols-1 gap-4">
+				<div
+					class="p-6 ml-4 bg-gray-700 rounded-lg shadow-md mb-4 max-w-[700px] 2xl:max-w-[700px]"
+				>
+					<b class="font-bold">Nome:</b>
+					<span th:text="${user.name}" class="block mb-2"></span>
+					<b class="font-bold">Email:</b>
+					<span th:text="${user.email}" class="block mb-2"></span>
+					<b class="font-bold">Data de Nascimento:</b>
+					<span th:text="${user.birthDate}" class="block mb-2"></span>
+					<b class="font-bold">Plataforma:</b>
+					<span th:text="${user.plataforma}" class="block mb-2"></span>
+					<b class="font-bold">Preferência de Gênero:</b>
+					<span th:text="${user.genrePreferences}" class="block mb-2"></span>
+					<b class="font-bold">Endereço:</b>
+					<span th:text="${user.address}" class="block mb-2"></span>
+					<b class="font-bold">Cargo:</b>
+					<span th:text="${user.role}" class="block mb-2"></span>
+				</div>
+				<div class="flex items-center">
+					<a
+						class="inline-block ml-4 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+						th:href="@{/users/{userId}/edit(userId = ${user.id})}"
+					>
+						Editar
+					</a>
+					<a
+						class="inline-block ml-4 px-4 py-2 text-blue-500 border border-blue-500 rounded hover:text-white hover:bg-blue-500"
+						href="/users"
+					>
+						Voltar
+					</a>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
+

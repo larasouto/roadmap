@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Meus jogos</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/a3de6dbf75.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body class="bg-gray-50 dark:bg-gray-900">
+		<div th:replace="~{fragments/header-home :: header}"></div>
+		<h1 class="text-3xl ml-10 font-bold text-gray-900 dark:text-white">
+			Meus jogos
+		</h1>
+
+		<div class="grid grid-cols-7 gap-4 m-8 2xl:grid-cols-8">
+			<div th:each="game : ${purchasedGames}">
+				<div
+					class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-105"
+				>
+					<div class="relative w-full h-full">
+						<img
+							th:src="${game.game_url}"
+							class="p-2 rounded-t-lg min-w-[45px] h-64 2xl:h-[320px] object-contain"
+							alt="product image"
+						/>
+						<p
+							class="absolute bottom-4 right-4 bg-rose-900 px-4 text-white text-sm rounded-md"
+							th:text="${game.device_name}"
+						>
+							Plataforma
+						</p>
+					</div>
+					<div class="px-5 pb-5">
+						<a href="#">
+							<h5
+								class="text-md 2xl:text-lg font-semibold tracking-tight text-gray-900 dark:text-white"
+								th:text="${game.game_name}"
+							>
+								Nome
+							</h5>
+						</a>
+						<div class="flex mt-4 justify-end">
+							<th:block th:switch="true">
+								<a
+									th:case="${game.game_purchase_status == true}"
+									class="focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-1.5 text-center inline-flex items-center focus:ring-green-800 dark:border-green-800 text-white hover:bg-green-800 mr-2 mb-2 data-[active=true]:bg-green-700 data-[active=false]:bg-gray-700"
+									th:attr="data-active=${game.game_purchase_status}"
+									th:href="${game.game_purchase_status ? '/game/game.gif' : ''}"
+									download
+								>
+									<span class="text-md 2xl:text-lg" th:text="Download"> </span>
+								</a>
+							</th:block>
+							<th:block th:switch="false">
+								<a
+									th:case="${game.game_purchase_status == true}"
+									class="focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-1.5 text-center inline-flex items-center focus:ring-green-800 text-white hover:bg-green-800 mr-2 mb-2 data-[active=true]:bg-green-700 data-[active=false]:bg-gray-700 cursor-pointer cursor-not-allowed"
+									th:attr="data-active=${game.game_purchase_status}"
+								>
+									<span class="text-md 2xl:text-lg" th:text="Download"> </span>
+								</a>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

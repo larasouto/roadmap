@@ -1,0 +1,104 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vendas diárias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a3de6dbf75.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <div
+      th:replace="~{fragments/manager-header :: header('Relatório de vendas diário ' + ${date})}"
+    ></div>
+    <div class="flex flex-col mx-6">
+      <form action="/reports/daily-sales" method="GET" class="mb-4">
+        <label for="searchDate" class="mr-2 text-gray-500">Buscar por data:</label>
+        <input
+          type="date"
+          id="searchDate"
+          name="date"
+          value="${date}"
+          class="px-2 py-1 border rounded"
+        />
+        <button type="submit" class="px-2 py-1 bg-blue-600 text-white rounded ml-2">Buscar</button>
+      </form>
+
+      <div class="-m-1.5 overflow-x-auto">
+        <div class="p-1.5 inline-block align-middle min-w-lg">
+          <div class="border rounded-lg shadow overflow-hidden border-gray-700 shadow-gray-900">
+            <table class="w-full divide-y divide-gray-700 table-auto">
+              <thead class="bg-gray-700 text-white">
+                <tr>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+                  >
+                    Nome do jogo
+                  </th>
+                  <th
+                    scope="col"
+                    class="min-w-[200px] px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+                  >
+                    Preço da Unidade
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                  >
+                    Quantidade de jogos vendidos
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                  >
+                    Valor das vendas
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-700">
+                <tr th:each="purchase : ${purchases}">
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200"
+                    th:text="${purchase.name}"
+                  >
+                    Nome
+                  </td>
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                    th:text="${purchase.purchasePrice}"
+                  >
+                    Preço da Unidade
+                  </td>
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                    th:text="${purchase.unit}"
+                  >
+                    Quantidade de jogos vendidos
+                  </td>
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                    th:text="${purchase.purchasePrice}"
+                  >
+                    Valor das vendas
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="3" class="px-6 py-3 text-left text-sm text-gray-200">
+                    Vendas totais
+                    <span th:if="${date}" th:text="${'[' + date + ']'}"></span>
+                  </th>
+                  <th class="px-6 py-3 text-left text-sm text-gray-200" th:text="${totalSales}">
+                    Total
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

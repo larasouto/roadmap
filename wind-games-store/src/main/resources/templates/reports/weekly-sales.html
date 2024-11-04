@@ -1,0 +1,230 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relatório de Vendas por Período</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a3de6dbf75.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <div th:replace="~{fragments/manager-header :: header('Relatório de vendas semanal')}"></div>
+    <div class="flex flex-col mx-6">
+      <form action="/reports/weekly-sales" method="GET" class="mb-4">
+        <label for="startDate" class="mr-2 text-gray-500">Data inicial:</label>
+        <input
+          type="date"
+          id="startDate"
+          name="startDate"
+          value="${startDate}"
+          class="px-2 py-1 border rounded"
+        />
+
+        <label for="endDate" class="ml-4 mr-2 text-gray-500">Data final:</label>
+        <input
+          type="date"
+          id="endDate"
+          name="endDate"
+          value="${endDate}"
+          class="px-2 py-1 border rounded"
+        />
+
+        <button type="submit" class="px-2 py-1 bg-blue-600 text-white rounded ml-2">Buscar</button>
+      </form>
+      <div class="flex gap-6 mt-6">
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 inline-block align-middle min-w-lg">
+            <div class="border rounded-lg shadow overflow-hidden border-gray-700 shadow-gray-900">
+              <table class="w-full divide-y divide-gray-700 table-auto">
+                <thead class="bg-gray-700 text-white">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Gênero
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Número de jogos vendidos
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Total de vendas
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                  <tr th:each="entry : ${gamesSoldByGenre}">
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200"
+                      th:text="${entry.name}"
+                    >
+                      Gênero
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                      th:text="${entry.unit}"
+                    >
+                      Número de jogos vendidos
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                      th:text="${entry.total}"
+                    >
+                      Total
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th colspan="2" class="px-6 py-3 text-left text-sm text-gray-200">
+                      Vendas totais
+                    </th>
+                    <th class="px-6 py-3 text-left text-sm text-gray-200" th:text="${genreTotal}">
+                      Total
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 inline-block align-middle min-w-lg">
+            <div class="border rounded-lg shadow overflow-hidden border-gray-700 shadow-gray-900">
+              <table class="w-full divide-y divide-gray-700 table-auto">
+                <thead class="bg-gray-700 text-white">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Plataforma
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Número de jogos vendidos
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Valor Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                  <tr th:each="entry : ${gamesSoldByPlatform}">
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200"
+                      th:text="${entry.name}"
+                    >
+                      Plataforma
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                      th:text="${entry.unit}"
+                    >
+                      Número de jogos vendidos
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                      th:text="${entry.total}"
+                    >
+                      Total
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th colspan="2" class="px-6 py-3 text-left text-sm text-gray-200">
+                      Vendas totais
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-sm text-gray-200"
+                      th:text="${platformTotal}"
+                    >
+                      Total
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 inline-block align-middle min-w-lg">
+            <div class="border rounded-lg shadow overflow-hidden border-gray-700 shadow-gray-900">
+              <table class="w-full divide-y divide-gray-700 table-auto">
+                <thead class="bg-gray-700 text-white">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Desenvolvedor
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Número de jogos vendidos
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-center text-xs font-medium text-gray-400 uppercase"
+                    >
+                      Valor total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                  <tr th:each="entry : ${gamesSoldByDeveloper}">
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-200"
+                      th:text="${entry.name}"
+                    >
+                      Desenvolvedor
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                      th:text="${entry.unit}"
+                    >
+                      Número de jogos vendidos
+                    </td>
+                    <td
+                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
+                      th:text="${entry.total}"
+                    >
+                      Total
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th colspan="2" class="px-6 py-3 text-left text-sm text-gray-200">
+                      Vendas totais
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-sm text-gray-200"
+                      th:text="${developerTotal}"
+                    >
+                      Total
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

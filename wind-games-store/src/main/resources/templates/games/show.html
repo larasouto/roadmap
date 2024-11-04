@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/a3de6dbf75.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-gray-800 text-white">
+    <header
+      th:replace="~{fragmentos :: header('Detalhes do jogo #' + ${game.id})}"
+    ></header>
+    <main>
+      <div class="container ml-4 mt-4">
+        <div class="grid grid-cols-1 gap-4">
+          <div
+            class="p-6 bg-gray-700 rounded-lg shadow-md mb-4 max-w-[800px] 2xl:max-w-[800px]"
+          >
+            <span th:text="${game.name}" class="block mb-2 text-2xl"></span>
+            <img
+              th:src="${game.imageUrl}"
+              class="p-2 rounded-t-lg min-w-[45px] h-64 2xl:h-[180px] h-[180px] object-contain"
+              alt="product image"
+            />
+            <b class="text-xl">Descrição:</b>
+            <span th:text="${game.description}" class="block mb-2"></span>
+            <b class="text-xl">Gênero:</b>
+            <span th:text="${game.genre.name}" class="block mb-2"></span>
+            <b class="text-xl">Plataforma:</b>
+            <span th:text="${game.platform.name}" class="block mb-2"></span>
+            <b class="text-xl">Desenvolvedor:</b>
+            <span th:text="${game.developer}" class="block mb-2"></span>
+            <b class="text-xl">Data de Lançamento:</b>
+            <span th:text="${game.releaseDate}" class="block mb-2"></span>
+            <b class="text-xl">Preço:</b>
+            <span th:text="${game.price} + 'R$'" class="block mb-2"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

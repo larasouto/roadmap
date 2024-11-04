@@ -1,0 +1,187 @@
+<head th:fragment="head(titulo)">
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title th:text="${titulo}">HOME</title>
+</head>
+
+<header th:fragment="header(titulo)">
+	<div
+		class="mb-5 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600"
+	>
+		<div class="grid h-full max-w-lg grid-cols-7 gap-4 font-medium">
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/main') ? 'bg-gray-800 group' : ''}"
+				href="/main"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="currentColor"
+					viewBox="0 0 20 20"
+				>
+					<path
+						d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+					/>
+				</svg>
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Home</span
+				>
+			</a>
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/games') ? 'bg-gray-800 group' : ''}"
+				href="/games"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					aria-hidden="true"
+					viewBox="0 0 22 23"
+					fill="currentColor"
+					version="1.1"
+				>
+					<path
+						d="M11.25 5.337c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.036 1.007-1.875 2.25-1.875S15 2.34 15 3.375c0 .369-.128.713-.349 1.003-.215.283-.401.604-.401.959 0 .332.278.598.61.578 1.91-.114 3.79-.342 5.632-.676a.75.75 0 01.878.645 49.17 49.17 0 01.376 5.452.657.657 0 01-.66.664c-.354 0-.675-.186-.958-.401a1.647 1.647 0 00-1.003-.349c-1.035 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401.31 0 .557.262.534.571a48.774 48.774 0 01-.595 4.845.75.75 0 01-.61.61c-1.82.317-3.673.533-5.555.642a.58.58 0 01-.611-.581c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.035-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959a.641.641 0 01-.658.643 49.118 49.118 0 01-4.708-.36.75.75 0 01-.645-.878c.293-1.614.504-3.257.629-4.924A.53.53 0 005.337 15c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.036 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.369 0 .713.128 1.003.349.283.215.604.401.959.401a.656.656 0 00.659-.663 47.703 47.703 0 00-.31-4.82.75.75 0 01.83-.832c1.343.155 2.703.254 4.077.294a.64.64 0 00.657-.642z"
+					/>
+				</svg>
+
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Jogos</span
+				>
+			</a>
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/users') ? 'bg-gray-800 group' : ''}"
+				href="users"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="currentColor"
+					viewBox="0 0 20 20"
+				>
+					<path
+						d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"
+					/>
+				</svg>
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Usuários</span
+				>
+			</a>
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/genres') ? 'bg-gray-800 group' : ''}"
+				href="genres"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					viewBox="0 0 23 23"
+					fill="currentColor"
+					version="1.1"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+					<g
+						id="SVGRepo_tracerCarrier"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					></g>
+					<g id="SVGRepo_iconCarrier">
+						<title>game</title>
+						<path
+							d="M4.469 8.156v-2.25h2.25v2.25h-2.25zM15.688 5.906h2.219v2.25h-2.219v-2.25zM20.156 12.625v-4.469h2.25v8.969h-2.25v2.219h-2.25v2.25h2.25v2.25h2.25v2.219h-4.5v-2.219h-2.219v-2.25h-8.969v2.25h-2.25v2.219h-4.469v-2.219h2.25v-2.25h2.219v-2.25h-2.219v-2.219h-2.25v-8.969h2.25v4.469h2.219v-2.219h2.25v-2.25h2.25v2.25h4.469v-2.25h2.25v2.25h2.219v2.219h2.25zM8.969 14.875v-2.25h-2.25v2.25h2.25zM15.688 14.875v-2.25h-2.25v2.25h2.25z"
+						></path>
+					</g>
+				</svg>
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Gêneros</span
+				>
+			</a>
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/devices') ? 'bg-gray-800 group' : ''}"
+				href="/devices"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 20 20"
+				>
+					<path
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"
+					/>
+				</svg>
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Plataformas</span
+				>
+			</a>
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/compras') ? 'bg-gray-800 group' : ''}"
+				href="/purchases"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="currentColor"
+					viewBox="0 0 20 20"
+				>
+					<path
+						d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z"
+					/>
+					<path
+						d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z"
+					/>
+				</svg>
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Compras</span
+				>
+			</a>
+			<a
+				th:classappend="${#httpServletRequest.getRequestURI().equals('/compras') ? 'bg-gray-800 group' : ''}"
+				href="/coupons"
+				class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+			>
+				<svg
+					class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					aria-hidden="true"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 21 21"
+				>
+					<path
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"
+					/>
+				</svg>
+				<span
+					class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+					>Cupons</span
+				>
+			</a>
+		</div>
+	</div>
+	<div class="container mt-3">
+		<h1 class="text-white text-2xl mb-5 pl-6" th:text="${titulo}">Oi!</h1>
+	</div>
+</header>
+

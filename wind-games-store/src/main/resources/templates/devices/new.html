@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Novo</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/a3de6dbf75.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body class="min-h-full bg-gray-50 bg-gray-900">
+		<section class="bg-gray-50 bg-gray-900 min-h-full">
+			<div
+				class="flex flex-col items-center justify-center px-57 py-8 mx-auto min-h-full lg:py-0"
+			>
+				<a
+					href="#"
+					class="mt-10 flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+				>
+					<script
+						src="https://kit.fontawesome.com/a3de6dbf75.js"
+						crossorigin="anonymous"
+					></script>
+					<i class="fas fa-gamepad text-black-500 mr-2"></i>
+					Wind GameStore
+				</a>
+				<div class="w-full bg-white rounded-lg shadow dark:border md:mt-0
+				sm:max-w-2xl xl:p-0 dark:bg-gray-800 dark:border-gray-700 form-container" >
+				<div class="p-10 space-y-8 md:space-y-10 sm:p-6">
+					<h1
+						class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+					>
+						Adicionar Plataforma
+					</h1>
+					<th:block th:replace="~{devices/form :: form('/devices')}" ></th:block>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>
+

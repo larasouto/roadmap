@@ -1,0 +1,190 @@
+<th:block th:fragment="form(action)">
+  <form th:object="${gameDto}" th:action="${action}" method="POST">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div>
+        <label
+          for="first_name"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Nome</label
+        >
+        <input
+          type="text"
+          id="first_name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          th:errorclass="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+          th:field="*{name}"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"
+        ></div>
+      </div>
+      <div>
+        <label
+          for="last_name"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Desenvolvedor</label
+        >
+        <input
+          type="text"
+          id="last_name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          th:errorclass="${#fields.hasErrors('developer')} ? 'is-invalid' : ''"
+          th:field="*{developer}"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('developer')}"
+          th:errors="*{developer}"
+        ></div>
+      </div>
+      <div>
+        <label
+          for="last_name"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Preço</label
+        >
+        <input
+          type="text"
+          id="last_name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          th:errorclass="${#fields.hasErrors('price')} ? 'is-invalid' : ''"
+          th:field="*{price}"
+          required
+          placeholder="R$"
+        />
+        <div
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('price')}"
+          th:errors="*{price}"
+        ></div>
+      </div>
+      <div class="mb-6">
+        <div class="relative max-w-sm">
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Data de lançamento</label
+          >
+          <input
+            type="date"
+            class="accent-white bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            th:errorclass="${#fields.hasErrors('releaseDate')} ? 'is-invalid' : ''"
+            th:field="*{releaseDate}"
+          />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('releaseDate')}"
+            th:errors="*{releaseDate}"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label
+        for="large-input"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Descrição</label
+      >
+      <textarea
+        type="text"
+        id="large-input"
+        class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        th:errorclass="${#fields.hasErrors('description')} ? 'is-invalid' : ''"
+        th:field="*{description}"
+        placeholder="Descrição do jogo"
+      />
+      <div
+        class="invalid-feedback"
+        th:if="${#fields.hasErrors('description')}"
+        th:errors="*{description}"
+      ></div>
+    </div>
+    <div class="mb-4">
+      <label
+        for="last_name"
+        class="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+        >Url da imagem</label
+      >
+      <input
+        type="text"
+        id="last_name"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        th:errorclass="${#fields.hasErrors('imageUrl')} ? 'is-invalid' : ''"
+        th:field="*{imageUrl}"
+        required
+      />
+      <div
+        class="invalid-feedback"
+        th:if="${#fields.hasErrors('imageUrl')}"
+        th:errors="*{imageUrl}"
+      ></div>
+    </div>
+    <div class="grid grid-cols-2 gap-6">
+      <div class="mb-6 lg:mb-2">
+        <label
+          for="countries"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Gênero</label
+        >
+        <select
+          id="countries"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          th:errorclass="${#fields.hasErrors('genre.id')} ? 'is-invalid' : ''"
+          th:field="*{genre.id}"
+        >
+          <option value="" disabled selected>Gênero</option>
+          <option
+            th:each="genre : ${genres}"
+            th:value="${genre.id}"
+            th:text="${genre.name}"
+          ></option>
+        </select>
+        <div
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('genre.id')}"
+          th:errors="*{genre.id}"
+        ></div>
+      </div>
+      <div class="mb-6">
+        <label
+          for="countries"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Plataforma</label
+        >
+        <select
+          id="countries"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          th:errorclass="${#fields.hasErrors('platform.id')} ? 'is-invalid' : ''"
+          th:field="*{platform.id}"
+        >
+          <option value="" disabled selected>Plataforma</option>
+          <option
+            th:each="device : ${devices}"
+            th:value="${device.id}"
+            th:text="${device.name}"
+          ></option>
+        </select>
+        <div
+          class="invalid-feedback"
+          th:if="${#fields.hasErrors('platform.id')}"
+          th:errors="*{platform.id}"
+        ></div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Adicionar
+    </button>
+    <a
+      href="/games"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Cancelar
+    </a>
+  </form>
+</th:block>

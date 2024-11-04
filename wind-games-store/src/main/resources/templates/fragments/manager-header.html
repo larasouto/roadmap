@@ -1,0 +1,88 @@
+<header th:fragment="header(titulo)">
+  <div
+    class="mb-5 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600"
+  >
+    <div class="h-full max-w-lg flex gap-4 font-medium">
+      <a
+        th:classappend="${#httpServletRequest.getRequestURI().equals('/main') ? 'bg-gray-800 group' : ''}"
+        href="/manager-home"
+        class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+      >
+        <svg
+          class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+          />
+        </svg>
+        <span
+          class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          >Home</span
+        >
+      </a>
+      <a
+        th:classappend="${#httpServletRequest.getRequestURI().equals('/genres') ? 'bg-gray-800 group' : ''}"
+        href="/reports/daily-sales"
+        class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+      >
+        <svg
+          class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          viewBox="0 0 23 23"
+          fill="currentColor"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <title>game</title>
+            <path
+              d="M4.469 8.156v-2.25h2.25v2.25h-2.25zM15.688 5.906h2.219v2.25h-2.219v-2.25zM20.156 12.625v-4.469h2.25v8.969h-2.25v2.219h-2.25v2.25h2.25v2.25h2.25v2.219h-4.5v-2.219h-2.219v-2.25h-8.969v2.25h-2.25v2.219h-4.469v-2.219h2.25v-2.25h2.219v-2.25h-2.219v-2.219h-2.25v-8.969h2.25v4.469h2.219v-2.219h2.25v-2.25h2.25v2.25h4.469v-2.25h2.25v2.25h2.219v2.219h2.25zM8.969 14.875v-2.25h-2.25v2.25h2.25zM15.688 14.875v-2.25h-2.25v2.25h2.25z"
+            ></path>
+          </g>
+        </svg>
+        <span
+          class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          >Relatório diário</span
+        >
+      </a>
+      <a
+        th:classappend="${#httpServletRequest.getRequestURI().equals('/devices') ? 'bg-gray-800 group' : ''}"
+        href="/reports/weekly-sales"
+        class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800"
+      >
+        <svg
+          class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 20 20"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"
+          />
+        </svg>
+        <span
+          class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500"
+          >Relatório por Período</span
+        >
+      </a>
+    </div>
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+      <a href="/login" class="text-sm font-semibold text-gray-900 dark:text-white"
+        >Sair da conta<span aria-hidden="true">&rarr;</span></a
+      >
+    </div>
+  </div>
+  <div class="container mt-3">
+    <h1 class="text-white text-2xl mb-5 pl-6" th:text="${titulo}">Oi!</h1>
+  </div>
+</header>

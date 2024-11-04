@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=game-width, initial-scale=1" />
+		<title>Novo</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/a3de6dbf75.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body class="bg-gray-800 text-white">
+		<header
+			th:replace="~{fragmentos :: header('Detalhes da compra #' + ${purchase.id})}"
+		></header>
+
+		<main class="container mt-4">
+			<div class="grid grid-cols-1 gap-4">
+				<div
+					class="p-6 ml-4 bg-gray-700 rounded-lg shadow-md mb-4 max-w-[800px] 2xl:max-w-[800px]"
+				>
+					<b class="text-xl">ID: </b>
+					<span th:text="${purchase.id}" class="block mb-2"></span>
+					<b class="text-xl">Jogo </b>
+					<span th:text="${purchase.game.name}" class="block mb-2"></span>
+					<b class="text-xl">Comprador: </b>
+					<span th:text="${purchase.buyer.name}" class="block mb-2"></span>
+					<b class="text-xl">Titular do cartão </b>
+					<span th:text="${purchase.cardHolder}" class="block mb-2"></span>
+					<b class="text-xl">Número do cartão </b>
+					<span th:text="${purchase.cardNumber}" class="block mb-2"></span>
+					<b>Data de validade</b>
+					<span
+						th:text="${purchase.cardExpirationDate}"
+						class="block mb-2"
+					></span>
+					<span th:text="${purchase.cardCVV}" class="block mb-2"></span>
+					<b></b>
+					<span th:text="${purchase.cardNumberIntallments}"></span><br />
+					<b>Purchase Date:</b> <span th:text="${purchase.purchaseDate}"></span
+					><br />
+				</div>
+				<div class="flex items-center">
+					<a
+						class="inline-block ml-4 px-4 py-2 text-blue-500 border border-blue-500 rounded hover:text-white hover:bg-blue-500"
+						href="/purchases"
+					>
+						Back
+					</a>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
+

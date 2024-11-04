@@ -1,0 +1,163 @@
+<th:block th:fragment="form(action)">
+  <div class="flex gap-12">
+    <form th:object="${purchaseDto}" th:action="${action}" method="POST">
+      <div class="grid gap-6 grid-cols-2">
+        <input type="hidden" name="gameId" th:value="${param.gameId}" />
+        <input type="hidden" name="userId" th:value="${param.userId}" />
+        <div>
+          <label
+            for="first_name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Titular do Cartão
+          </label>
+          <input
+            type="text"
+            id="first_name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            th:errorclass="${#fields.hasErrors('cardHolder')} ? 'is-invalid' : ''"
+            th:field="*{cardHolder}"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('cardHolder')}"
+            th:errors="*{cardHolder}"
+          ></div>
+        </div>
+        <div>
+          <label
+            for="last_name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Número do Cartão</label
+          >
+          <input
+            type="text"
+            minlength="16"
+            maxlength="16"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            th:errorclass="${#fields.hasErrors('cardNumber')} ? 'is-invalid' : ''"
+            th:field="*{cardNumber}"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('cardNumber')}"
+            th:errors="*{cardNumber}"
+          ></div>
+        </div>
+        <div>
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Data de Validade</label
+          >
+          <input
+            type="text"
+            placeholder="mm/yy"
+            size="6"
+            minlength="5"
+            maxlength="5"
+            id="exp"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            th:errorclass="${#fields.hasErrors('cardExpirationDate')} ? 'is-invalid' : ''"
+            th:field="*{cardExpirationDate}"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('cardExpirationDate')}"
+            th:errors="*{cardExpirationDate}"
+          ></div>
+        </div>
+        <div>
+          <label
+            for="last_name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Número de Parcelas</label
+          >
+          <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            th:errorclass="${#fields.hasErrors('cardNumberIntallments')} ? 'is-invalid' : ''"
+            th:field="*{cardNumberIntallments}"
+            required
+          >
+            <option value="" disabled selected>Parcelas</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+        <div>
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >CVV</label
+          >
+          <input
+            size="3"
+            minlength="3"
+            maxlength="3"
+            type="text"
+            class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            th:errorclass="${#fields.hasErrors('cardCVV')} ? 'is-invalid' : ''"
+            th:field="*{cardCVV}"
+          />
+          <div
+            class="invalid-feedback"
+            th:if="${#fields.hasErrors('cardCVV')}"
+            th:errors="*{cardCVV}"
+          ></div>
+        </div>
+        <!--
+		<div>
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Cupom de desconto</label
+          >
+          <input
+            type="text"
+            class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          />
+        </div>
+		-->
+      </div>
+      <button
+        type="submit"
+        class="mt-4 mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Realizar compra
+      </button>
+      <a
+        href="/games/user-home"
+        class="max-h-fit text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-6 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Cancelar
+      </a>
+    </form>
+    <div class="flex flex-col gap-2">
+      <label
+        class="block mb-1 text-md font-bold text-gray-900 dark:text-white"
+        th:text="${game.name}"
+        >Resumo da compra</label
+      >
+      <div
+        class="w-48 h-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      >
+        <div class="relative w-full h-full">
+          <img
+            th:src="${game.imageUrl}"
+            class="rounded-t-lg min-w-[45px] h-64 object-contain"
+            alt="product image"
+          />
+          <p
+            class="absolute bottom-4 right-4 bg-rose-900 px-4 text-white text-sm rounded-md"
+            th:text="${game.platform}"
+          >
+            Plataforma
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
