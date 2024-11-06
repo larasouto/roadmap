@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (enrolment(); as enrolmentRef) {
+      <div>
+        <h2 data-cy="enrolmentDetailsHeading"><span>Enrolment</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ enrolmentRef.id }}</span>
+          </dd>
+          <dt><span>Created At</span></dt>
+          <dd>
+            <span>{{ enrolmentRef.createdAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Course</span></dt>
+          <dd>
+            @if (enrolment()!.course) {
+              <div>
+                <a [routerLink]="['/course', enrolment()!.course?.id, 'view']">{{ enrolmentRef.course?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Student</span></dt>
+          <dd>
+            @if (enrolment()!.student) {
+              <div>
+                <a [routerLink]="['/student', enrolment()!.student?.id, 'view']">{{ enrolmentRef.student?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/enrolment', enrolmentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

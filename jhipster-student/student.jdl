@@ -1,0 +1,43 @@
+entity Student {
+	firstName String required minlength(2)
+    lastName String required minlength(2)
+    email String required minlength(3) unique
+    age Integer required
+}
+
+entity StudentIdCard {
+    cardNumber String required minlength(15) maxlength(15)
+}
+
+entity Book {
+    createdAt Instant required
+    bookName String required
+}
+
+entity Course {
+    name String required minlength(2)
+    department String required minlength(2)
+}
+
+entity Enrolment {
+    createdAt Instant required
+}
+
+relationship OneToOne {
+    Student{studentIdCard} to StudentIdCard{student}
+}
+
+relationship OneToMany {
+  Student{books} to Book{student}
+  Student{enrolments} to Enrolment
+}
+
+relationship ManyToOne {
+  Enrolment{course} to Course
+}
+
+
+paginate Student, Course with infinite-scroll
+paginate Book with pagination
+
+

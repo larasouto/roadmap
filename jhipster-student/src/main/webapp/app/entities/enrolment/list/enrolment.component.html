@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="EnrolmentHeading">
+    <span>Enrolments</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-enrolment"
+        [routerLink]="['/enrolment/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new Enrolment</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (enrolments?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>No Enrolments found</span>
+    </div>
+  }
+
+  @if (enrolments && enrolments.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdAt">
+              <div class="d-flex">
+                <span>Created At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="course.id">
+              <div class="d-flex">
+                <span>Course</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="student.id">
+              <div class="d-flex">
+                <span>Student</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (enrolment of enrolments; track trackId(enrolment)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/enrolment', enrolment.id, 'view']">{{ enrolment.id }}</a>
+              </td>
+              <td>{{ enrolment.createdAt | formatMediumDatetime }}</td>
+              <td>
+                @if (enrolment.course) {
+                  <div>
+                    <a [routerLink]="['/course', enrolment.course.id, 'view']">{{ enrolment.course.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (enrolment.student) {
+                  <div>
+                    <a [routerLink]="['/student', enrolment.student.id, 'view']">{{ enrolment.student.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/enrolment', enrolment.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">View</span>
+                  </a>
+
+                  <a [routerLink]="['/enrolment', enrolment.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(enrolment)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
